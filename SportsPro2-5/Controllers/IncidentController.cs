@@ -23,7 +23,7 @@ namespace SportsPro.Controllers
         public ActionResult Add()
         {
             ViewBag.Action = "Add";
-            ViewBag.Customers = _context.Customers.OrderBy(c => c.FullName).ToList();
+            ViewBag.Customers = _context.Customers.OrderBy(c => c.LastName).ToList();
             ViewBag.Products = _context.Products.OrderBy(p => p.Name).ToList();
             ViewBag.Technicians = _context.Technicians.OrderBy(t => t.Name).ToList();
             return View("Edit", new Incident());
@@ -32,7 +32,7 @@ namespace SportsPro.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            ViewBag.Customers = _context.Customers.OrderBy(c => c.FullName).ToList();
+            ViewBag.Customers = _context.Customers.OrderBy(c => c.LastName).ToList();
             ViewBag.Products = _context.Products.OrderBy(p => p.Name).ToList();
             ViewBag.Technicians = _context.Technicians.OrderBy(t => t.Name).ToList();
             ViewBag.Action = "Edit";
@@ -68,6 +68,9 @@ namespace SportsPro.Controllers
             }
             else
             {
+                ViewBag.Customers = _context.Customers.OrderBy(c => c.LastName).ToList();
+                ViewBag.Products = _context.Products.OrderBy(p => p.Name).ToList();
+                ViewBag.Technicians = _context.Technicians.OrderBy(t => t.Name).ToList();
                 ViewBag.Action = (incident.IncidentID == 0) ? "Add" : "Edit";
                 return View(incident);
             }

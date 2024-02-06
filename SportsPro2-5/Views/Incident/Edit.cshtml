@@ -10,7 +10,7 @@
 <form asp-action="Edit" method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
 
-    <input asp-for="IncidentID" type="hidden" />
+    <input asp-for="IncidentID" type="hidden">
 
     <div class="form-group">
 
@@ -34,7 +34,7 @@
 
             <option value="">Select a product</option>
 
-            @foreach (Product p in ViewBag.Product)
+            @foreach (Product p in ViewBag.Products)
             {
                 <option value="@p.ProductID">@p.Name</option>
             }
@@ -58,9 +58,9 @@
 
             <option value="">Select a technician</option>
 
-            @foreach (Technician t in ViewBag.Technician)
+            @foreach (Technician t in ViewBag.Technicians)
             {
-                <option value="@t.TechnicianID">@t.TechnicianID</option>
+                <option value="@t.TechnicianID">@t.Name</option>
             }
 
         </select>
@@ -71,10 +71,15 @@
         <input asp-for="DateOpened" class="form-control" value="@Model.DateOpened.ToString("yyyy-MM-dd HH:mm:ss")">
     </div>
 
+    <div class="form-group">
+        <label asp-for="DateClosed">Date Opened</label>
+        <input asp-for="DateClosed" class="form-control" value="@Model.DateClosed">
+    </div>
+
 
     <div class="mt-2">
         <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
-        <a asp-controller="Customer" asp-action="List" class="btn btn-primary">Cancel</a>
+        <a asp-controller="Incident" asp-action="List" class="btn btn-primary">Cancel</a>
     </div>
 
 </form>
