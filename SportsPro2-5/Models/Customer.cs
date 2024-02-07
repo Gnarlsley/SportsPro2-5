@@ -28,8 +28,8 @@ namespace SportsPro.Models
 		public string? Phone { get; set; } 
         public string? Email { get; set; }
 
-		[Required(ErrorMessage = "Please select a country")]
-		public string CountryID { get; set; }  // foreign key property
+        [Required(ErrorMessage = "Please select a country")]
+        public string CountryID { get; set; } = string.Empty;  // foreign key property
 
 		public Country? Country { get; set; }    // navigation property
 
