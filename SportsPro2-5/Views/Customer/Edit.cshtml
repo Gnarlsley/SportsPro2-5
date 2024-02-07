@@ -46,12 +46,8 @@
     <!--Make list box-->
     <div class="form-group">
         <label asp-for="CountryID">Country</label>
-        <select asp-for="CountryID" class="form-control">
+        <select asp-for="CountryID" asp-items="@(new SelectList(ViewBag.Countries, "CountryID", "Name", Model.CountryID))" class="form-control">
             <option value="">Select a country</option>
-            @foreach (Country c in ViewBag.Countries)
-            {
-                <option value="@c.CountryID">@c.Name</option>
-            }
         </select>
     </div>
 
@@ -73,3 +69,6 @@
     </div>
  
 </form>
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

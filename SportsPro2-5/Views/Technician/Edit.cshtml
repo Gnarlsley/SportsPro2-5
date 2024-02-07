@@ -9,6 +9,8 @@
 
 <form asp-action="Edit" method="post">
 
+    <div asp-validation-summary="All" class="text-danger"></div>
+
 <!-- **FOR DEBUGGING**
     <div class="form-group">
         <label asp-for="TechnicianID">Code</label>
@@ -18,19 +20,16 @@
     
     <input type="hidden" asp-for="TechnicianID">
 
-    <span asp-validation-for="Name" class="text-danger"></span>
     <div class="form-group mb-3">
         <label asp-for="Name">Name</label>
         <input asp-for="Name" class="form-control mt-1">
     </div>
 
-    <span asp-validation-for="Email" class="text-danger"></span>
     <div class="form-group mb-3">
         <label asp-for="Email">Email</label>
         <input asp-for="Email" class="form-control mt-1">
     </div>
 
-    <span asp-validation-for="Phone" class="text-danger"></span>
     <div class="form-group mb-3">
         <label asp-for="Phone">Phone Number</label>
         <input asp-for="Phone" class="form-control mt-1">
@@ -42,3 +41,6 @@
     </div>
 
 </form>
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
