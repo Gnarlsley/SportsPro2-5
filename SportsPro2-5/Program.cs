@@ -1,12 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using SportsPro.Models;
+using System.Security.Policy;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRouting(options => {
     options.LowercaseUrls = true;
-    options.AppendTrailingSlash = true;
+    options.AppendTrailingSlash = false;
 });
 
 builder.Services.AddControllersWithViews();
@@ -30,6 +31,10 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "Other",
+    pattern: "{controller}/{action=List}");
 
 app.MapControllerRoute(
     name: "default",
