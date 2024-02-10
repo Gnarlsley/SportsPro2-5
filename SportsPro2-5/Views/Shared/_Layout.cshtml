@@ -12,6 +12,11 @@
 
 </head>
 <body>
+    <!--Cody: Added ViewContext in order to gather route data-->
+    @{
+        string c = ViewContext.RouteData.Values["controller"]?.ToString() ?? "";
+        string a = ViewContext.RouteData.Values["action"]?.ToString() ?? "";
+    }
     <header>
         <nav class="navbar navbar-expand-md navbar-dark bg-primary mb-3">
             <div class="container-fluid">
@@ -25,15 +30,38 @@
                 </button>
                 <nav class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class="navbar-nav me-auto">
-                        <a class="nav-item nav-link active" asp-controller="Home" asp-action="Index">Home</a>
-                        <a class="nav-item nav-link active" asp-controller="Product" asp-action="List">Products</a>
-                        <a class="nav-item nav-link active" asp-controller="Technician" asp-action="List">Technicians</a>
-                        <a class="nav-item nav-link active" asp-controller="Customer" asp-action="List">Customers</a>
-                        <a class="nav-item nav-link active" asp-controller="Incident" asp-action="List">Incidents</a>
-                        <a class="nav-item nav-link active" asp-controller="Registration" asp-action="Index">Registrations</a>
+                        <!--Cody: Used route data to set the active nav link for List, Edit, and Delete pages-->
+                        <a class="nav-item nav-link
+                            @(c == "Home" && a == "Index" ? "active" : "")"
+                            asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-item nav-link
+                            @(c == "Product" && a == "List" ? "active" : "")
+                            @(c == "Product" && a == "Edit" ? "active" : "")
+                            @(c == "Product" && a == "Delete" ? "active" : "")"
+                            asp-controller="Product" asp-action="List">Products</a>
+                        <a class="nav-item nav-link
+                            @(c == "Technician" && a == "List" ? "active" : "")
+                            @(c == "Technician" && a == "Edit" ? "active" : "")
+                            @(c == "Technician" && a == "Delete" ? "active" : "")"
+                            asp-controller="Technician" asp-action="List">Technicians</a>
+                        <a class="nav-item nav-link
+                            @(c == "Customer" && a == "List" ? "active" : "")
+                            @(c == "Customer" && a == "Edit" ? "active" : "")
+                            @(c == "Customer" && a == "Delete" ? "active" : "")"
+                            asp-controller="Customer" asp-action="List">Customers</a>
+                        <a class="nav-item nav-link
+                           @(c == "Incident" && a == "List" ? "active" : "")
+                           @(c == "Incident" && a == "Edit" ? "active" : "")
+                           @(c == "Incident" && a == "Delete" ? "active" : "")"
+                            asp-controller="Incident" asp-action="List">Incidents</a>
+                        <a class="nav-item nav-link
+                            @(c == "Registration" && a == "Index" ? "active" : "")"
+                            asp-controller="Registration" asp-action="Index">Registrations</a>
                     </div>
                     <div class="navbar-nav ms-auto">
-                        <a class="nav-item nav-link active" asp-controller="Home" asp-action="About">About</a>
+                        <a class="nav-item nav-link
+                            @(c == "Home" && a == "About" ? "active" : "")"
+                            asp-controller="Home" asp-action="About">About</a>
                     </div>
                 </nav>
             </div>
