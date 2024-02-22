@@ -1,10 +1,26 @@
 ﻿@model List<Product>
 
+<!--Ethan log: In order to have the message pop up on the screen we need to add some code to the layout file aka List.cshtml-->
+
 @{
     ViewBag.Title = "Product Manager";
+
+    //New Code (Making an variable for the TempData)
+
+    var successMessage = TempData["SuccessMessage"] as string; 
 }
 
 <h1>@ViewBag.Title</h1>
+
+ <!--New Code (if statment that alert the user of their success in the project)-->
+
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <div class ="alert alert-success" role="alert">
+        @successMessage
+    </div>
+}
+
 
 <table class="table table-bordered table-striped">
     <thead>

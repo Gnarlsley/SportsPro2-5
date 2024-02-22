@@ -6,6 +6,7 @@ using System.Linq;
 
 namespace SportsPro.Controllers
 {
+    //Ethan log for Assissgment 8-1 this is where a lot of the code going change.
     public class ProductController : Controller
     {
         private readonly SportsProContext _context;
@@ -21,15 +22,16 @@ namespace SportsPro.Controllers
             return View(productsList);
         }
 
+        //Ethan log: All the ActionResult got changed which includes the Add, edit, delte, and deleteconfirmed
         [HttpGet]
-        public ActionResult Add()
+        public IActionResult Add()
         {
             ViewBag.Action = "Add";
             return View("Edit", new Product());
         }
 
         [HttpGet]
-        public ActionResult Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -49,7 +51,7 @@ namespace SportsPro.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Product product)
+        public IActionResult Edit(Product product)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +66,14 @@ namespace SportsPro.Controllers
                     _context.SaveChanges();
                 }
 
+                //Ethan log: Adding a TempData Message to show the store was succesful
+
+                TempData["SuccessMessage"] = "Operation successful";
+
                 return RedirectToAction(nameof(List));
+
+            
+
             }
             else
             {
@@ -74,7 +83,7 @@ namespace SportsPro.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
             var deleteProd = _context.Products.Find(id);
             return View(deleteProd);
@@ -82,7 +91,7 @@ namespace SportsPro.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
             var deleteProd = _context.Products.Find(id);
 
@@ -94,6 +103,10 @@ namespace SportsPro.Controllers
             _context.Products.Remove(deleteProd);
 
             _context.SaveChanges();
+
+            //Ethan log: Adding a TempData Message to show the store was succesful
+
+            TempData["SuccessMessage"] = "Delete operation successful!";
 
             return RedirectToAction("List");
         }
