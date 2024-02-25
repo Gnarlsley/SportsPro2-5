@@ -106,7 +106,7 @@ namespace SportsPro.Controllers
 
             //Ethan log: Adding a TempData Message to show the store was succesful
 
-            TempData["SuccessMessage"] = "Delete operation successful!";
+            TempData["DeletionMessage"] = "Delete operation successful!";
 
             return RedirectToAction("List");
         }

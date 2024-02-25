@@ -7,7 +7,9 @@
 
     //New Code (Making an variable for the TempData)
 
-    var successMessage = TempData["SuccessMessage"] as string; 
+    var successMessage = TempData["SuccessMessage"] as string;
+
+    var deletionMessage = TempData["DeletionMessage"] as string;
 }
 
 <h1>@ViewBag.Title</h1>
@@ -21,6 +23,12 @@
     </div>
 }
 
+@if (!string.IsNullOrEmpty(deletionMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        @deletionMessage
+    </div>
+}
 
 <table class="table table-bordered table-striped">
     <thead>
