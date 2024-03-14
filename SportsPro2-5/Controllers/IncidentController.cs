@@ -100,5 +100,10 @@ namespace SportsPro.Controllers
 
             return RedirectToAction("List");
         }
+
+        public RedirectToActionResult ListByTech()
+        {
+            return RedirectToAction("Index", "TechIncident");
+        }
     }
 }
