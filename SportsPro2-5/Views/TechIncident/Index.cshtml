@@ -11,18 +11,18 @@
 
 <h1>@ViewBag.Title</h1>
 
-<select asp-for="TechnicianID" class="form-control">
-    <option value="">Select a Technician</option>
-    @foreach (Technician t in ViewBag.Technicians)
-    {
-        <option value="@t.TechnicianID">@t.Name</option>
-    }
-</select>
+<form asp-action="List" method="post">
+    <select asp-for="TechnicianID" class="form-control" name="TechnicianID" required>
+        <option value="">Select a Technician</option>
+        @foreach (Technician t in ViewBag.Technicians)
+        {
+            <option value="@t.TechnicianID">@t.Name</option>
+        }
+    </select>
 
-<p class="row">
-    <div class="align-items-center col-md-6">
-        <a asp-action="Add" class="btn btn-primary">Switch Technician</a>
-        <!--Ethan Niehus adding an edit button-->
-        <a asp-action="Edit" class="btn btn-primary">Edit</a>
-    </div>
-</p>
+    <p class="row">
+        <div class="align-items-center col-md-6">
+            <button type="submit" class="btn btn-primary">Select Technician</button>
+        </div>
+    </p>
+</form>

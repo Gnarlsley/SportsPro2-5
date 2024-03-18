@@ -1,49 +1,60 @@
 ﻿@model List<Incident>
 
 @{
-    ViewBag.Title = "TechIncident List";
+    ViewBag.Title = "Incident List";
 }
 
-<h1>@ViewBag.Title</h1>
+<h1>Technican: @ViewBag.Technican</h1>
+</br>
+<h2>@ViewBag.Title</h2>
 
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>
-                Title
-            </th>
-            <th>
-                Date Opened
-            </th>
-            <th>
-                Description
-            </th>
-            <th>
-                Date Closed
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var incident in Model)
-        {
+@if (Model != null && Model.Any())
+{
+    <table class="table table-bordered table-striped">
+        <thead>
             <tr>
-                <td>
-                    @incident.Title
-                </td>
-                <td>
-                    @incident.DateOpened
-                </td>
-                <td>
-                    @incident.Description
-                </td>
-                <td>
-                    @incident.DateClosed
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@incident.IncidentID" class="btn btn-primary">Edit</a>
-                </td>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Date Opened
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Date Closed
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var incident in Model)
+            {
+                <tr>
+                    <td>
+                        @incident.Title
+                    </td>
+                    <td>
+                        @incident.DateOpened
+                    </td>
+                    <td>
+                        @incident.Description
+                    </td>
+                    <td>
+                        @incident.DateClosed
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@incident.IncidentID" class="btn btn-primary">Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No incidents found.</p>
+}
+
+<a asp-action="Index" class="btn btn-primary">Choose a Technician</a>

@@ -12,11 +12,5 @@ namespace SportsPro2_5.Models
 
         public string action = string.Empty;
 
-
-        //this code is not working
-
-        /*        public string checkAction(string c) =>
-                    c.ToLower() == Viewbag.Action.ToLower() ? "Add" : "Edit";
-            */
     }
 }
