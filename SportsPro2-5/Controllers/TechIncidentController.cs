@@ -13,7 +13,7 @@ namespace SportsPro2_5.Controllers
             _context = context;
         }
 
-        
+
         public IActionResult Index()
         {
             ViewBag.Technicians = _context.Technicians.OrderBy(t => t.Name).ToList();
@@ -48,6 +48,6 @@ namespace SportsPro2_5.Controllers
             return View(incident);
         }
 
-       
+
     }
 }
