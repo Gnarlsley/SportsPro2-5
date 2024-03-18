@@ -1,0 +1,18 @@
+﻿@model Incident
+
+<h1>Edit Incident</h1>
+
+<form asp-action="Edit" method="post">
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DateClosed"></label>
+        <input asp-for="DateClosed" class="form-control" />
+        <span asp-validation-for="DateClosed" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
