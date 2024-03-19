@@ -13,9 +13,30 @@ namespace SportsPro.Controllers
         {
             _context = context;
         }
-        public IActionResult List()
+
+
+        // Below is the code for the IActionResult including the FromRoute//
+        public IActionResult List([FromRoute] string id)
         {
-            var IncidentList = _context.Incidents.Include(i => i.Customer).Include(i => i.Product).ToList();
+            var IncidentList = new List<Incident>();
+
+            IQueryable<Incident> query = _context.Incidents
+                .Include(i => i.TechnicianID).Include(i => i.DateClosed);
+
+            if (id == "unasigned")
+            {
+                IncidentList = _context.Incidents.Where
+                    (i => i.TechnicianID == -1).Include(i => i.Customer).Include(i => i.Product).ToList();
+            }
+            else if (id == "closed")
+            {
+                IncidentList = _context.Incidents.Where
+                    (i => i.DateClosed != null).Include(i => i.Customer).Include(i => i.Product).ToList();
+            }
+            else
+            {
+                IncidentList = _context.Incidents.Include(i => i.Customer).Include(i => i.Product).ToList();
+            }
             return View(IncidentList);
         }
 

@@ -6,52 +6,75 @@
 
 <h1>@ViewBag.Title</h1>
 
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>
-                Title
-            </th>
-            <th>
-                Customer
-            </th>
-            <th>
-                Product
-            </th>
-            <th>
-                Date Opened
-            </th>
-            <th>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var incident in Model)
-        {
-            <tr>
-                <td>
-                    @incident.Title
-                </td>
-                <td>
-                    @incident.Customer.FullName
-                </td>
-                <td>
-                    @incident.Product.Name
-                </td>
-                <td>
-                    @incident.DateOpened
-                </td>
-                <td>
-                    <a asp-controller="Incident" asp-action="Edit" asp-route-id="@incident.IncidentID" class="btn btn-primary">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@incident.IncidentID" class="btn btn-primary">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+// added <form> to the buttons and the table //
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Filter" method="post">
+            <div class="md-6">
+                <a asp-action="List" method="post" asp-route-id="incident" class="btn btn-primary">All Incidents</a>
+            </div>
+            <div class="md-6">
+                <a asp-action="List" method="post" asp-route-id="unasigned" class="btn btn-primary">Unasigned Incidents</a>
+            </div>
+            <div class="md-6">
+                <a asp-action="List" method="post" asp-route-id="closed" class="btn btn-primary">Closed Incidents</a>
+            </div>
+        </form>
+    </div>
+    <div>
+        <form asp-action="List" method="post" asp-route-id="IncidentList">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            Title
+                        </th>
+                        <th>
+                            Customer
+                        </th>
+                        <th>
+                            Product
+                        </th>
+                        <th>
+                            Date Opened
+                        </th>
+                        <th>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var incident in Model)
+                    {
+                        <tr>
+                            <td>
+                                @incident.Title
+                            </td>
+                            <td>
+                                @incident.Customer.FullName
+                            </td>
+                            <td>
+                                @incident.Product.Name
+                            </td>
+                            <td>
+                                @incident.DateOpened
+                            </td>
+                            <td>
+                                <a asp-controller="Incident" asp-action="Edit" asp-route-id="@incident.IncidentID" class="btn btn-primary">Edit</a>
+                            </td>
+                            <td>
+                                <a asp-action="Delete" asp-route-id="@incident.IncidentID" class="btn btn-primary">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
 
 <p class="row">
     <div class="align-items-center col-md-6">
-        <a asp-action="Add" class="btn btn-outline-primary">Add</a>
+        <a asp-action="Add" class="btn btn-primary">Add Incident</a>
     </div>
 </p>
